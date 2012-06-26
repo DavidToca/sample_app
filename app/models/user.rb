@@ -11,7 +11,9 @@
 
 class User < ActiveRecord::Base
 
-  attr_accessible :name, :email
+  attr_accessor :password, :password_confirmation
+ #:password, :password_confirmation  :something
+  attr_accessible :name, :email, :password, :password_confirmation
 
   before_save {|user| user.email = email.downcase }
 
@@ -20,3 +22,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
   uniqueness: { case_sensitive: false }
 end
+
+
+
+
